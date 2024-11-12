@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Dashboard from "./components/Dashboard"; // 사이드 네비게이션
 import Header from "./components/Header"; // 헤더
-import Main from "./components/Main"; // 메인 컨텐츠
+import Main from "./components/Main/Main"; // 메인 컨텐츠
 import "./App.css";
 
 function App() {
