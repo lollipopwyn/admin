@@ -5,12 +5,13 @@
   left: 250px; /* 사이드 네비게이션 너비만큼 오른쪽으로 이동 */
   width: calc(100% - 250px);
   height: 60px;
-  background-color: #18af78;
+  background-color: #4A628A;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1;
+  font-family: var(--font-en);
 }
 
 /* 컨텐츠 영역 스타일 */
