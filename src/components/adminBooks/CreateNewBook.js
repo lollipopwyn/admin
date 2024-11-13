@@ -19,6 +19,7 @@ const CreateNewBook = ({ onClose }) => {
     book_title: '',
     book_author: '',
     genre_tag_name: '',
+    sent_email: false, // 기본값 false (이메일 발송 여부)
   });
 
   // 이미지 미리 보기 URL 상태 정의
@@ -67,6 +68,14 @@ const CreateNewBook = ({ onClose }) => {
     if (name === 'book_cover') {
       setPreviewUrl(value);
     }
+  };
+
+  // sent_email 토글을 처리하는 함수
+  const toggleSentEmail = () => {
+    setFormData((prevData) => ({
+      ...prevData,
+      sent_email: !prevData.sent_email,
+    }));
   };
 
   // is_book_best 토글을 처리하는 함수
@@ -166,6 +175,18 @@ const CreateNewBook = ({ onClose }) => {
           <div className="input_book_info">
             <div className="book_info_toggle">
               {/* is_book_best 토글 버튼 추가 */}
+              <div className="toggle_sent_email">
+                <label>이메일 발송</label>
+                <button
+                  type="button"
+                  className={`toggle_button ${
+                    formData.sent_email ? 'true' : 'false'
+                  }`}
+                  onClick={toggleSentEmail}
+                >
+                  {formData.sent_email ? 'On' : 'Off'}
+                </button>
+              </div>
               <div className="toggle_best_seller">
                 <label>베스트셀러</label>
                 <button
