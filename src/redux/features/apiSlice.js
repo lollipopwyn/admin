@@ -2,10 +2,14 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 // API 요청에 사용될 엔드포인트 URL을 import함
 import {
+  // GET
   GET_BOOK_ALL_CATEGORIES_API_URL,
   GET_BOOK_BY_CATEGORY_API_URL,
   GET_BOOK_LIST_API_URL,
   GET_SEARCH_BOOKS_API_URL,
+
+  // POST
+  POST_NEW_BOOKS_API_URL,
 } from '../../util/apiUrl';
 
 //Request 메서드
@@ -62,6 +66,13 @@ export const fetchSearchBooksData = createApiThunk(
   getRequest
 );
 
+// 키워드 검색 관련 Thunks
+export const postNewBooksData = createApiThunk(
+  'api/postNewBooks',
+  POST_NEW_BOOKS_API_URL,
+  postRequest
+);
+
 //========================3. 비동기 API 호출 처리========================
 // fulfilled 상태를 처리하는 핸들러 함수 생성
 const handleFullfilled = (stateKey) => (state, action) => {
@@ -95,6 +106,8 @@ const apiSlice = createSlice({
     fetchGetBookList: [],
     fetchSearchBooks: null,
     fetchBookByCategory: null,
+
+    postNewBooks: null,
     // 기타 초기화
 
     isLoading: false,
@@ -129,7 +142,10 @@ const apiSlice = createSlice({
         fetchSearchBooksData.fulfilled,
         handleFullfilled('fetchSearchBooks')
       )
-      .addCase(fetchSearchBooksData.rejected, handleRejected);
+      .addCase(fetchSearchBooksData.rejected, handleRejected)
+      // ==============신간 도서 등록==============
+      .addCase(postNewBooksData.fulfilled, handleFullfilled('postNewBooks'))
+      .addCase(postNewBooksData.rejected, handleRejected);
 
     // 다른 extraReducers 설정
   },

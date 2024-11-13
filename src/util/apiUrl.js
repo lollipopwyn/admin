@@ -7,7 +7,11 @@ const BASE_URL =
 // 예시)
 // export const GET_TERMS_API_URL = `${BASE_URL}/terms`;
 
+// get
 export const GET_BOOK_ALL_CATEGORIES_API_URL = `${BASE_URL}/all-categories`; //도서 전체 카테고리 조회
 export const GET_BOOK_BY_CATEGORY_API_URL = `${BASE_URL}/search-category`; //도서 필터링 검색
 export const GET_BOOK_LIST_API_URL = `${BASE_URL}/book-list`; //도서 조회
 export const GET_SEARCH_BOOKS_API_URL = `${BASE_URL}/search-books`; //도서 키워드 검색
+
+// post
+export const POST_NEW_BOOKS_API_URL = `${BASE_URL}/new-books`; //신간 도서 등록

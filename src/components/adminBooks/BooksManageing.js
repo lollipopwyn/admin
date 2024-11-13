@@ -1,30 +1,46 @@
-import React from 'react';
-import Searchbar from './Searchbar';
-import CategoryFilter from './CategoryFilter';
-import './Books.css';
+import React, { useState } from 'react';
 import BookList from './BookList';
+import CreateNewBook from './CreateNewBook';
+import './Books.css';
 
 const BooksManageing = () => {
+  // 팝업 창이 열려 있는지 여부를 관리하는 상태
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  // 팝업 창을 여는 함수
+  const openPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  // 팝업 창을 닫는 함수
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
+
   return (
     <div className="book_container">
-      <div className="book_contianer_top">
+      <div className="pege_title">
         <h2>도서 목록</h2>
-        <button>일관 삭제</button>
-      </div>
-      <div className="book_contianer_main">
-        <div className="book_contianer_main_tap">
-          <span>ID</span>
-          <span>책 목록</span>
-          <span>리뷰</span>
-          <span>평점</span>
-          <span>등록날짜</span>
-          <span>베스트셀러 여부</span>
-          <span>상태</span>
-        </div>
       </div>
       <div className="book_info">
         <BookList />
       </div>
+      <div className="create_new_book">
+        {/* CreateNewBook 버튼을 클릭하면 openPopup 함수 호출 */}
+        <button onClick={openPopup}>도서 등록</button>
+      </div>
+
+      {/* 팝업 창이 열려 있을 때만 CreateNewBook 컴포넌트를 렌더링 */}
+      {isPopupOpen && (
+        <div className="popup_overlay">
+          <div className="popup_content">
+            <button className="close_button" onClick={closePopup}>
+              닫기
+            </button>
+            <CreateNewBook />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

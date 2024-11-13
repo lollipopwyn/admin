@@ -88,6 +88,18 @@ const BookList = () => {
         <CategoryFilter onCategoryChange={handleCategoryChange} />
         <Searchbar apiUrl={GET_SEARCH_BOOKS_API_URL} onSearch={handleSearch} />
       </div>
+      <div className="delete_all_books">
+        <button>선택 사항 삭제</button>
+      </div>
+      <div className="book_contianer_main_tap">
+        <span>ID</span>
+        <span>책 목록</span>
+        <span>리뷰</span>
+        <span>평점</span>
+        <span>등록날짜</span>
+        <span>베스트셀러 여부</span>
+        <span>상태</span>
+      </div>
       {loading ? (
         <p>Loading...</p>
       ) : (
