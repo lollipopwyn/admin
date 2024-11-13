@@ -37,7 +37,8 @@ const BooksManageing = () => {
             <button className="close_button" onClick={closePopup}>
               닫기
             </button>
-            <CreateNewBook />
+            <CreateNewBook onClose={closePopup} />
+            {/* onClose를 closePopup으로 전달 */}
           </div>
         </div>
       )}
