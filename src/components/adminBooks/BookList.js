@@ -167,7 +167,7 @@ const BookList = () => {
                   <div className="book_list_item">
                     {/* <span key={book.genre_tag_id}></span> */}
                     <span> {book.book_id}</span>
-                    <span>{book.book_title}</span>
+                    <span className="book_title">{book.book_title}</span>
                     <span>{book.review_count} 개</span>
                     <span>{book.average_rating}</span>
                     <span>{book.book_create_date}</span>
