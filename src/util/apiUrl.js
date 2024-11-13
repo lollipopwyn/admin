@@ -6,3 +6,7 @@ const BASE_URL =
 
 // 예시)
 // export const GET_TERMS_API_URL = `${BASE_URL}/terms`;
+
+export const GET_BOOK_ALL_CATEGORIES_API_URL = `${BASE_URL}/all-categories`; //도서 전체 카테고리 조회
+export const GET_BOOK_LIST_API_URL = `${BASE_URL}/book-list`; //도서 조회
+export const GET_SEARCH_BOOKS_API_URL = `${BASE_URL}/search-books`; //도서 키워드 검색

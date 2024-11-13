@@ -1,7 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 // API 요청에 사용될 엔드포인트 URL을 import함
-import {} from '../../util/apiUrl';
+import {
+  GET_BOOK_ALL_CATEGORIES_API_URL,
+  GET_BOOK_LIST_API_URL,
+  GET_SEARCH_BOOKS_API_URL,
+} from '../../util/apiUrl';
 
 //Request 메서드
 import {
@@ -12,9 +16,6 @@ import {
 } from '../../util/requestMethods';
 
 //  =======================1. 동적 fetch Thunk 생성기========================
-//    actionType (예: fetchGetBookList)
-//    apiURL - 엔드포인트 URL
-//    requestMethod - HTTP 요청 함수 (예: getRequest)
 const createApiThunk = (actionType, apiURL, requestMethod) => {
   return createAsyncThunk(actionType, async (params) => {
     const options = {
@@ -33,12 +34,24 @@ const createApiThunk = (actionType, apiURL, requestMethod) => {
 // ========================2. 각 Thunks 정의========================
 //    특정 API 요청을 위해 createApiThunk를 호출하여 Thunk 함수 생성
 
-//예시
-// export const fetchBookListData = createApiThunk(
-//   'api/fetchGetBookList',
-//   GET_BOOK_LIST_API_URL,
-//   getRequest
-// );
+// 책 카테고리 Thunks
+export const fetchBookAllCategoriesData = createApiThunk(
+  'api/fetchBookAllCategories',
+  GET_BOOK_ALL_CATEGORIES_API_URL,
+  getRequest
+);
+//북 리스트 관련 Thunks
+export const fetchBookListData = createApiThunk(
+  'api/fetchGetBookList',
+  GET_BOOK_LIST_API_URL,
+  getRequest
+);
+// 키워드 검색 관련 Thunks
+export const fetchSearchBooksData = createApiThunk(
+  'api/fetchSearchBooks',
+  GET_SEARCH_BOOKS_API_URL,
+  getRequest
+);
 
 //========================3. 비동기 API 호출 처리========================
 // fulfilled 상태를 처리하는 핸들러 함수 생성
@@ -69,7 +82,9 @@ const handlePending = (state) => {
 const apiSlice = createSlice({
   name: 'api',
   initialState: {
-    // 예시) hotTopics: [],
+    fetchBookAllCategories: [],
+    fetchGetBookList: [],
+    fetchSearchBooks: null,
     // 기타 초기화
 
     isLoading: false,
@@ -79,13 +94,26 @@ const apiSlice = createSlice({
 
   // 비동기 액션을 처리하는 extraReducers 설정
   extraReducers: (builder) => {
-    // builder
-    // 예시)
-    // .addCase(
-    //   fetchBookListData.fulfilled,
-    //   handleFullfilled('fetchGetBookList')
-    // )
-    // .addCase(fetchBookListData.rejected, handleRejected);
+    builder
+      // ==============도서 전체 카테고리 조회==============
+      .addCase(
+        fetchBookAllCategoriesData.fulfilled,
+        handleFullfilled('fetchBookAllCategories')
+      )
+      .addCase(fetchBookAllCategoriesData.rejected, handleRejected)
+      // ==============북 리스트==============
+      .addCase(
+        fetchBookListData.fulfilled,
+        handleFullfilled('fetchGetBookList')
+      )
+      .addCase(fetchBookListData.rejected, handleRejected)
+      // ==============북 키워드 검색==============
+      .addCase(
+        fetchSearchBooksData.fulfilled,
+        handleFullfilled('fetchSearchBooks')
+      )
+      .addCase(fetchSearchBooksData.rejected, handleRejected);
+
     // 다른 extraReducers 설정
   },
 });
