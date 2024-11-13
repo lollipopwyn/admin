@@ -45,6 +45,17 @@ const CreateNewBook = ({ onClose }) => {
     fetchCategories();
   }, []);
 
+  // 취소 버튼 클릭 시 확인 메시지
+  const handleCancel = () => {
+    const isConfirmed = window.confirm(
+      '작성한 내용이 초기화됩니다, 정말로 나가시겠습니까?'
+    );
+
+    if (isConfirmed) {
+      onClose(); // 사용자가 확인을 클릭하면 팝업을 닫음
+    }
+  };
+
   // 입력 필드의 변경을 처리하는 함수
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -287,7 +298,7 @@ const CreateNewBook = ({ onClose }) => {
         </div>
         <div className="book_create_button_area">
           <button type="submit">확인</button>
-          <button type="button" onClick={onClose}>
+          <button type="button" onClick={handleCancel}>
             취소
           </button>
         </div>
