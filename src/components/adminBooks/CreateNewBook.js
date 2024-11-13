@@ -11,7 +11,8 @@ const CreateNewBook = ({ onClose }) => {
     isbn: '',
     book_description: '',
     book_price: '',
-    is_book_best: false,
+    is_book_best: false, // 기본값 false로 설정
+    book_status: true, // 기본값 true로 설정
     book_title: '',
     book_author: '',
     genre_tag_name: '',
@@ -24,6 +25,22 @@ const CreateNewBook = ({ onClose }) => {
       ...formData,
       [name]: type === 'checkbox' ? checked : value,
     });
+  };
+
+  // is_book_best 토글을 처리하는 함수
+  const toggleIsBookBest = () => {
+    setFormData((prevData) => ({
+      ...prevData,
+      is_book_best: !prevData.is_book_best,
+    }));
+  };
+
+  // book_status 토글을 처리하는 함수
+  const toggleBookStatus = () => {
+    setFormData((prevData) => ({
+      ...prevData,
+      book_status: !prevData.book_status,
+    }));
   };
 
   // 필수 입력 필드 유효성 검사를 위한 함수
@@ -96,6 +113,34 @@ const CreateNewBook = ({ onClose }) => {
       <form className="upload_book_detail" onSubmit={handleSubmit}>
         <div className="upload_book_detail">
           <div className="input_book_info">
+            <div className="book_info_toggle">
+              {/* is_book_best 토글 버튼 추가 */}
+              <div className="toggle_best_seller">
+                <label>베스트셀러</label>
+                <button
+                  type="button"
+                  className={`toggle_button ${
+                    formData.is_book_best ? 'active' : 'inactive'
+                  }`}
+                  onClick={toggleIsBookBest}
+                >
+                  {formData.is_book_best ? 'On' : 'Off'}
+                </button>
+              </div>
+              {/* book_status 토글 버튼 */}
+              <div className="toggle_book_status">
+                <label>도서 상태</label>
+                <button
+                  type="button"
+                  className={`toggle_button ${
+                    formData.book_status ? 'active' : 'inactive'
+                  }`}
+                  onClick={toggleBookStatus}
+                >
+                  {formData.book_status ? 'Available' : 'Unavailable'}
+                </button>
+              </div>
+            </div>
             <div>
               <label>제목</label>
               <input
