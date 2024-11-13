@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
-import { POST_NEW_BOOKS_API_URL } from '../../util/apiUrl';
+import React, { useState, useEffect } from 'react';
+import {
+  POST_NEW_BOOKS_API_URL,
+  GET_BOOK_ALL_CATEGORIES_API_URL,
+} from '../../util/apiUrl';
 import axios from 'axios';
 
 const CreateNewBook = ({ onClose }) => {
@@ -17,6 +20,27 @@ const CreateNewBook = ({ onClose }) => {
     book_author: '',
     genre_tag_name: '',
   });
+
+  // 카테고리 목록을 관리할 상태 정의
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // 카테고리 목록을 불러오기 위한 useEffect
+  useEffect(() => {
+    const fetchCategories = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(GET_BOOK_ALL_CATEGORIES_API_URL);
+        setCategories(response.data.categories); // categories 필드에 데이터 설정
+      } catch (error) {
+        console.error('카테고리 데이터를 불러오는 중 오류 발생:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   // 입력 필드의 변경을 처리하는 함수
   const handleChange = (e) => {
@@ -188,12 +212,25 @@ const CreateNewBook = ({ onClose }) => {
             </div>
             <div>
               <label>카테고리</label>
-              <input
-                type="text"
-                name="genre_tag_name"
-                value={formData.genre_tag_name}
-                onChange={handleChange}
-              />
+              {loading ? (
+                <p>카테고리를 불러오는 중...</p>
+              ) : (
+                <select
+                  name="genre_tag_name"
+                  value={formData.genre_tag_name}
+                  onChange={handleChange}
+                >
+                  <option value="">카테고리 선택</option>
+                  {categories.map((category) => (
+                    <option
+                      key={category.genre_tag_id}
+                      value={category.genre_tag_name}
+                    >
+                      {category.genre_tag_name}
+                    </option>
+                  ))}
+                </select>
+              )}
             </div>
             <div>
               <label>ISBN</label>
