@@ -2,16 +2,13 @@ import React from 'react';
 import Searchbar from './Searchbar';
 import CategoryFilter from './CategoryFilter';
 import './Books.css';
+import BookList from './BookList';
 
 const BooksManageing = () => {
   return (
     <div className="book_container">
       <div className="book_contianer_top">
         <h2>도서 목록</h2>
-        <div className="books_search">
-          <Searchbar />
-          <CategoryFilter />
-        </div>
         <button>일관 삭제</button>
       </div>
       <div className="book_contianer_main">
@@ -24,6 +21,9 @@ const BooksManageing = () => {
           <span>베스트셀러 여부</span>
           <span>상태</span>
         </div>
+      </div>
+      <div className="book_info">
+        <BookList />
       </div>
     </div>
   );
