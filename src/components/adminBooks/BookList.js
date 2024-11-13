@@ -165,7 +165,7 @@ const BookList = () => {
               {books.map((book, index) => (
                 <div key={book.book_id}>
                   <div className="book_list_item">
-                    <span key={book.genre_tag_id}></span>
+                    {/* <span key={book.genre_tag_id}></span> */}
                     <span> {book.book_id}</span>
                     <span>{book.book_title}</span>
                     <span>{book.review_count} 개</span>
