@@ -125,6 +125,15 @@ const CreateNewBook = ({ onClose }) => {
       return; // 유효성 검사를 통과하지 못하면 서버 요청을 보내지 않음
     }
 
+    // 확인 메시지 출력
+    const isConfirmed = window.confirm(
+      '신간 도서를 정말로 등록 하시겠습니까? 잘못된 내용이 없는지 꼭 확인 하세요.'
+    );
+
+    if (!isConfirmed) {
+      return; // 사용자가 취소하면 아무 작업도 하지 않음
+    }
+
     try {
       const response = await axios.post(POST_NEW_BOOKS_API_URL, formData);
       console.log('신간 도서가 성공적으로 추가되었습니다:', response.data);
