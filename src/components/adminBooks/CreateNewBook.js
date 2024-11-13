@@ -21,6 +21,9 @@ const CreateNewBook = ({ onClose }) => {
     genre_tag_name: '',
   });
 
+  // 이미지 미리 보기 URL 상태 정의
+  const [previewUrl, setPreviewUrl] = useState('');
+
   // 카테고리 목록을 관리할 상태 정의
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -49,6 +52,10 @@ const CreateNewBook = ({ onClose }) => {
       ...formData,
       [name]: type === 'checkbox' ? checked : value,
     });
+    // book_cover 필드가 변경될 때 previewUrl 업데이트
+    if (name === 'book_cover') {
+      setPreviewUrl(value);
+    }
   };
 
   // is_book_best 토글을 처리하는 함수
@@ -251,14 +258,22 @@ const CreateNewBook = ({ onClose }) => {
             </div>
           </div>
           <div className="upload_book_cover">
-            <div>등록된 이미지 프리뷰</div>
-            <label>이미지URL</label>
+            <label>이미지 URL</label>
             <input
               type="text"
               name="book_cover"
               value={formData.book_cover}
               onChange={handleChange}
             />
+            <div>등록된 이미지 프리뷰</div>
+            {previewUrl && (
+              <img
+                src={previewUrl}
+                alt="도서 이미지 미리 보기"
+                className="image_preview"
+                style={{ width: '100px', height: '150px', marginTop: '10px' }}
+              />
+            )}
           </div>
         </div>
         <div className="book_create_button_area">
