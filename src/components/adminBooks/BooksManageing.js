@@ -33,12 +33,17 @@ const BooksManageing = () => {
       {/* 팝업 창이 열려 있을 때만 CreateNewBook 컴포넌트를 렌더링 */}
       {isPopupOpen && (
         <div className="popup_overlay">
-          <div className="popup_content">
-            <button className="close_button" onClick={closePopup}>
-              닫기
-            </button>
-            <CreateNewBook onClose={closePopup} />
-            {/* onClose를 closePopup으로 전달 */}
+          <div className="popup_wrapper">
+            <div className="popup_content">
+              <div className="create_book_pop_title_area">
+                <h2>ADD BOOK INFOMATION</h2>
+              </div>
+              <button className="close_button" onClick={closePopup}>
+                닫기
+              </button>
+              <CreateNewBook onClose={closePopup} />
+              {/* onClose를 closePopup으로 전달 */}
+            </div>
           </div>
         </div>
       )}
