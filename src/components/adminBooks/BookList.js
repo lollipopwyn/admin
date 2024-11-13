@@ -88,9 +88,9 @@ const BookList = () => {
         <CategoryFilter onCategoryChange={handleCategoryChange} />
         <Searchbar apiUrl={GET_SEARCH_BOOKS_API_URL} onSearch={handleSearch} />
       </div>
-      <div className="delete_all_books">
+      {/* <div className="delete_all_books">
         <button>선택 사항 삭제</button>
-      </div>
+      </div> */}
       <div className="book_contianer_main_tap">
         <span>ID</span>
         <span>책 목록</span>

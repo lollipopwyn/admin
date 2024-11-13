@@ -1,4 +1,4 @@
-/* =====================신간 도서 등록 팝업===================== */
+/* =====================신간 도서 등록 팝업(CreateNewBook)===================== */
 .book_container .popup_overlay {
   position: fixed;
   top: 0;
@@ -48,7 +48,7 @@
   color: #fff;
 }
 
-/* =====================신간 도서 팝업 내부 디자인===================== */
+/* =====================신간 도서 팝업 내부 디자인(CreateNewBook)===================== */
 
 /* 폼 스타일 */
 .upload_book_detail {
@@ -202,6 +202,128 @@
   text-align: center;
   color: #333;
 }
+
+
+/* =====================북 리스(BookList)======================== */
+.book_container {
+  padding: 20px;
+  font-family: var;
+}
+
+/* 페이지 제목 */
+.pege_title h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: var(--text-black);
+  font-family: var(--font-kr);
+}
+
+/* ==============검색 및 필터 ============*/
+.booklist_search {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.category-filter select{
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid var(--text-gray-light);
+  cursor: pointer;
+}
+
+.search-bar input{
+  border-radius: 10px;
+  padding: 10px;
+  width: 400px;
+  border: 1px solid var(--text-gray-light);
+}
+
+.search-bar button{
+  border: none;
+  background: none;
+}
+
+.search-bar img{
+  width: 30px;
+  margin-left: -50px;
+  margin-bottom: -10px;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.search-bar img:hover{
+  width: 31px;
+}
+
+
+
+/* 삭제 버튼 */
+/* .delete_all_books button {
+  background-color:var(--text-point);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 15px;
+} */
+
+/* 책 목록 헤더 */
+.book_contianer_main_tap {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-top: 1px solid var(--text-gray-light);
+  border-bottom: 1px solid var(--text-gray-light);
+  font-weight: bold;
+}
+
+/* 책 목록 아이템 */
+.book_list_item {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* 각 항목 스타일 */
+.book_list_item span {
+  flex: 1;
+  text-align: center;
+}
+
+/* 베스트셀러 여부 스위치 */
+.book_list_item .switch {
+  display: inline-block;
+}
+
+/* 상태 텍스트 */
+.book_list_item .status {
+  color: #888;
+  font-weight: bold;
+}
+
+/* 로딩 메시지 */
+.loading {
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+  margin: 20px 0;
+}
+
+/* 도서 등록 버튼 */
+.create_new_book button {
+  background-color:var(--text-point);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
 
 
 

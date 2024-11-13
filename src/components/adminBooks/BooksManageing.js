@@ -38,9 +38,9 @@ const BooksManageing = () => {
               <div className="create_book_pop_title_area">
                 <h2>ADD BOOK INFOMATION</h2>
               </div>
-              <button className="close_button" onClick={closePopup}>
+              {/* <button className="close_button" onClick={closePopup}>
                 닫기
-              </button>
+              </button> */}
               <CreateNewBook onClose={closePopup} />
               {/* onClose를 closePopup으로 전달 */}
             </div>

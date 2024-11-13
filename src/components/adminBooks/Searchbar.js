@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import SeachIcon from '../assets/logo/search_icon.png';
+import './Books.css';
 
 const Searchbar = ({ apiUrl, onSearch }) => {
   const [keyword, setKeyword] = useState('');
@@ -19,14 +21,16 @@ const Searchbar = ({ apiUrl, onSearch }) => {
   };
 
   return (
-    <div className="searchbar">
+    <div className="search-bar">
       <input
         type="text"
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
         placeholder="책 제목 또는 저자 검색..."
       />
-      <button onClick={handleSearch}>검색</button>
+      <button onClick={handleSearch}>
+        <img src={SeachIcon} alt="" />
+      </button>
     </div>
   );
 };
