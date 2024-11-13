@@ -4,6 +4,7 @@ import {
   GET_BOOK_LIST_API_URL,
   GET_BOOK_BY_CATEGORY_API_URL,
   GET_SEARCH_BOOKS_API_URL,
+  PATCH_BOOKS_INFO_API_URL,
 } from '../../util/apiUrl';
 import Searchbar from './Searchbar';
 import CategoryFilter from './CategoryFilter';
@@ -82,6 +83,61 @@ const BookList = () => {
     }
   };
 
+  const toggleBestSeller = async (bookId, currentStatus) => {
+    // 상태에 따라 알림 메시지 내용 변경
+    const message = currentStatus
+      ? '해당 도서를 베스트셀러에서 제외하시겠습니까?'
+      : '해당 도서를 베스트셀러로 지정하시겠습니까?';
+
+    // 확인 및 취소 버튼을 가진 알림창
+    if (window.confirm(message)) {
+      try {
+        const newStatus = !currentStatus;
+        await axios.patch(PATCH_BOOKS_INFO_API_URL(bookId), {
+          book_id: bookId, // book_id 추가
+          is_book_best: newStatus,
+        });
+        setBooks((prevBooks) =>
+          prevBooks.map((book) =>
+            book.book_id === bookId
+              ? { ...book, is_book_best: newStatus }
+              : book
+          )
+        );
+      } catch (error) {
+        console.error('Error updating best seller status:', error);
+      }
+    }
+  };
+
+  const toggleBookStatus = async (bookId, currentStatus) => {
+    // currentStatus가 null일 경우 true로 간주
+    const actualStatus = currentStatus === null || currentStatus === true;
+
+    // 상태에 따라 알림 메시지 내용 변경
+    const message = actualStatus
+      ? '해당 도서를 숨김 처리 하시겠습니까?'
+      : '해당 도서를 활성화 하시겠습니까?';
+
+    // 확인 및 취소 버튼을 가진 알림창
+    if (window.confirm(message)) {
+      try {
+        const newStatus = !actualStatus;
+        await axios.patch(PATCH_BOOKS_INFO_API_URL(bookId), {
+          book_id: bookId, // book_id 추가
+          book_status: newStatus, // book_status 상태 변경
+        });
+        setBooks((prevBooks) =>
+          prevBooks.map((book) =>
+            book.book_id === bookId ? { ...book, book_status: newStatus } : book
+          )
+        );
+      } catch (error) {
+        console.error('Error updating book status:', error);
+      }
+    }
+  };
+
   return (
     <div className="booklist_container">
       <div className="booklist_search">
@@ -112,11 +168,37 @@ const BookList = () => {
                     <span key={book.genre_tag_id}></span>
                     <span> {book.book_id}</span>
                     <span>{book.book_title}</span>
-                    <span>{book.review_count}</span>
+                    <span>{book.review_count} 개</span>
                     <span>{book.average_rating}</span>
                     <span>{book.book_create_date}</span>
-                    <span>{book.is_book_best}</span>
-                    <span>{book.book_status}</span>
+                    {/* is_book_best 토글 버튼 */}
+                    <span
+                      style={{
+                        cursor: 'pointer',
+                        color: book.is_book_best ? 'blue' : 'black',
+                      }}
+                      onClick={() =>
+                        toggleBestSeller(book.book_id, book.is_book_best)
+                      }
+                    >
+                      {book.is_book_best ? 'true' : 'false'}
+                    </span>
+                    <span
+                      style={{
+                        cursor: 'pointer',
+                        color:
+                          book.book_status === null || book.book_status
+                            ? 'blue'
+                            : 'gray', // null일 때도 blue로 표시
+                      }}
+                      onClick={() =>
+                        toggleBookStatus(book.book_id, book.book_status)
+                      }
+                    >
+                      {book.book_status === null || book.book_status
+                        ? '활성'
+                        : '숨김'}
+                    </span>
                   </div>
                 </div>
               ))}
