@@ -10,6 +10,9 @@ import {
 
   // POST
   POST_NEW_BOOKS_API_URL,
+
+  // PATCH
+  PATCH_BOOKS_INFO_API_URL,
 } from '../../util/apiUrl';
 
 //Request 메서드
@@ -73,6 +76,13 @@ export const postNewBooksData = createApiThunk(
   postRequest
 );
 
+// 도서 정보 수정
+export const patchBooksInfoData = createApiThunk(
+  'api/patchBooksInfo',
+  PATCH_BOOKS_INFO_API_URL,
+  patchRequest
+);
+
 //========================3. 비동기 API 호출 처리========================
 // fulfilled 상태를 처리하는 핸들러 함수 생성
 const handleFullfilled = (stateKey) => (state, action) => {
@@ -108,6 +118,8 @@ const apiSlice = createSlice({
     fetchBookByCategory: null,
 
     postNewBooks: null,
+
+    patchBooksInfo: null,
     // 기타 초기화
 
     isLoading: false,
@@ -145,7 +157,10 @@ const apiSlice = createSlice({
       .addCase(fetchSearchBooksData.rejected, handleRejected)
       // ==============신간 도서 등록==============
       .addCase(postNewBooksData.fulfilled, handleFullfilled('postNewBooks'))
-      .addCase(postNewBooksData.rejected, handleRejected);
+      .addCase(postNewBooksData.rejected, handleRejected)
+      // ==============도서 정보 수정==============
+      .addCase(patchBooksInfoData.fulfilled, handleFullfilled('patchBooksInfo'))
+      .addCase(patchBooksInfoData.rejected, handleRejected);
 
     // 다른 extraReducers 설정
   },

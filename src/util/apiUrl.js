@@ -15,3 +15,7 @@ export const GET_SEARCH_BOOKS_API_URL = `${BASE_URL}/search-books`; //도서 키
 
 // post
 export const POST_NEW_BOOKS_API_URL = `${BASE_URL}/new-books`; //신간 도서 등록
+
+// patch
+export const PATCH_BOOKS_INFO_API_URL = (book_id) =>
+  `${BASE_URL}/books/${book_id}`; //도서 정보 수정
