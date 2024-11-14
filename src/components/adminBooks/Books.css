@@ -65,17 +65,21 @@
   text-align: left; /* 헤더 항목 왼쪽 정렬 */
 }
 
+.book_contianer_main_tap span:nth-child(3) {
+  margin-left: 90px;
+}
+
 /* 책 목록 아이템 */
 .book_list_item {
   width: 100%;
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   padding: 15px;
   border-bottom: 1px solid #e0e0e0;
 }
 
-.book_list_item .book_title{
- max-width:150px;
+.book_list_item .book_title {
+  max-width: 200px;
   width: 100%;
   margin-left: -120px;
 }
@@ -101,7 +105,7 @@
 
 /* 도서 등록 버튼 */
 .create_new_book button {
-  background-color: #7AB2D3;
+  background-color: #7ab2d3;
   color: white;
   padding: 10px 20px;
   border: none;
