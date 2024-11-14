@@ -176,6 +176,16 @@
   color: #fff;
 }
 
+
+/* ===========================검색 결과 없음============================= */
+.no-results-message {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #888;
+  align-items: center;
+  margin-top: 100px;
+}
 /* =====================신간 도서 팝업 내부 디자인===================== */
 
 /* 폼 스타일 */
@@ -330,3 +340,5 @@
   text-align: center;
   color: #333;
 }
+
+

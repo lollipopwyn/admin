@@ -18,6 +18,7 @@ const BookList = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [searchKeyword, setSearchKeyword] = useState(''); // 검색어 상태 추가
+  const [noResults, setNoResults] = useState(false); // 검색 결과가 없을 때 메시지 표시 상태 추가
 
   useEffect(() => {
     if (searchKeyword) {
@@ -29,6 +30,7 @@ const BookList = () => {
 
   const fetchBooks = async (page, genre_tag_id) => {
     setLoading(true);
+    setNoResults(false); // 새로운 요청 시 noResults 초기화
     try {
       const apiUrl = genre_tag_id
         ? GET_BOOK_BY_CATEGORY_API_URL
@@ -38,9 +40,10 @@ const BookList = () => {
       });
       setBooks(response.data.data);
       setTotalBooks(response.data.totalBooks);
-      setLoading(false);
+      setNoResults(response.data.data.length === 0); // 결과가 없으면 noResults를 true로 설정
     } catch (error) {
       console.error('Error fetching books:', error);
+    } finally {
       setLoading(false);
     }
   };
@@ -52,19 +55,22 @@ const BookList = () => {
     setCurrentPage(1); // 검색 시 페이지를 1로 초기화
     setSelectedCategory(''); // 검색 시 선택된 카테고리 초기화
     setSearchKeyword(keyword); // 검색어 상태 업데이트
+    setNoResults(data.data.length === 0); // 검색 결과가 없으면 noResults를 true로 설정
   };
 
   const fetchSearchResults = async (page, keyword) => {
     setLoading(true);
+    setNoResults(false); // 새로운 요청 시 noResults 초기화
     try {
       const response = await axios.get(GET_SEARCH_BOOKS_API_URL, {
         params: { keyword, page, limit },
       });
       setBooks(response.data.data);
       setTotalBooks(response.data.totalBooks);
-      setLoading(false);
+      setNoResults(response.data.data.length === 0); // 결과가 없으면 noResults를 true로 설정
     } catch (error) {
       console.error('Error fetching search results:', error);
+    } finally {
       setLoading(false);
     }
   };
@@ -73,6 +79,7 @@ const BookList = () => {
     setSelectedCategory(category);
     setCurrentPage(1);
     setSearchKeyword(''); // 카테고리 변경 시 검색어 초기화
+    setNoResults(false); // 카테고리 변경 시 검색 결과 메시지 초기화
   };
 
   const totalPages = Math.ceil(totalBooks / limit);
@@ -158,6 +165,8 @@ const BookList = () => {
       </div>
       {loading ? (
         <p>Loading...</p>
+      ) : noResults ? ( // 검색 결과가 없을 경우 메시지 표시
+        <p className="no-results-message">검색된 결과가 없습니다.</p>
       ) : (
         <div className="booklist_wrapper">
           <div className="booklist_content">
