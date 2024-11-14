@@ -20,12 +20,20 @@ const Searchbar = ({ apiUrl, onSearch }) => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    // Enter 키가 눌리면 handleSearch 함수를 호출
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
     <div className="search-bar">
       <input
         type="text"
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
+        onKeyDown={handleKeyDown} // Enter 키 입력 시 검색 수행
         placeholder="책 제목 또는 저자 검색..."
       />
       <button onClick={handleSearch}>
