@@ -27,7 +27,7 @@ const BooksManageing = () => {
       </div>
       <div className="create_new_book">
         {/* CreateNewBook 버튼을 클릭하면 openPopup 함수 호출 */}
-        <button onClick={openPopup}>도서 등록</button>
+        <button onClick={openPopup}>신간 도서 등록</button>
       </div>
 
       {/* 팝업 창이 열려 있을 때만 CreateNewBook 컴포넌트를 렌더링 */}
