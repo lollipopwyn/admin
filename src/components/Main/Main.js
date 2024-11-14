@@ -1,10 +1,28 @@
-import React from "react";
+import React from 'react';
+import Logo from '../assets/logo/logo_black.png';
 
 const Main = () => {
   return (
     <div>
-      우측 메인 화면
-      구조1111111111111111111111111111111111111111111111111111111111111111111
+      <img
+        src={Logo}
+        alt=""
+        style={{
+          width: '100%',
+          maxWidth: '280px',
+          textAlign: 'center',
+        }}
+      />
+      <p
+        style={{
+          marginLeft: '20px',
+          marginTop: '30px',
+          fontSize: '20px',
+          color: 'var(--text-gray-medium)',
+        }}
+      >
+        Loading...
+      </p>
     </div>
   );
 };
