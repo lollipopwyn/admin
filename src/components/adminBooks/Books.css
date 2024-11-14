@@ -114,3 +114,201 @@
   font-weight: 700;
   font-size: 17px;
 }
+
+/* ==============신간 도서 등록================== */
+.book_container .popup_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.book_container .popup_wrapper {
+  border-radius: 20px;
+  /* 팝업 전체에 border-radius 적용 */
+  overflow: hidden;
+  /* 스크롤 영역이 radius를 넘지 않도록 설정 */
+}
+
+.book_container .popup_content {
+  background-color: #fff;
+  border-radius: 20px;
+  overflow-y: auto;
+  /* 팝업 높이가 화면을 초과할 경우 스크롤 가능 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.create_book_pop_title_area {
+  text-align: center;
+  background-color: #333;
+  padding: 10px;
+  color: #fff;
+}
+
+.close_button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  margin-right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* =====================신간 도서 팝업 내부 디자인===================== */
+
+/* 폼 스타일 */
+.upload_book_detail {
+  margin: 40px;
+  margin-left: 50px;
+  display: flex;
+  /* flex-direction: column; */
+  gap: 15px;
+}
+
+/* 입력 영역 스타일 */
+.input_book_info label {
+  font-size: 0.9em;
+  color: #555;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input_book_info {
+  width: 100%;
+}
+
+.input_book_info input[type='text'],
+.input_book_info input[type='number'],
+.input_book_info select,
+.input_book_info input {
+  width: 100%;
+  padding: 8px;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.book_info_toggle {
+  display: flex;
+}
+
+.book_info_toggle label {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.book_info_toggle button {
+  margin-right: 10px;
+  margin-bottom: 20px;
+  width: 65px;
+}
+
+/* 토글 버튼 스타일 */
+.toggle_button {
+  padding: 8px 12px;
+  font-size: 0.9em;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.toggle_button.true {
+  background-color: #4caf50;
+  /* 활성화된 상태 */
+}
+
+.toggle_button.false {
+  background-color: #ccc;
+  /* 비활성화된 상태 */
+}
+
+.toggle_button.active {
+  background-color: #4caf50;
+}
+
+.toggle_button.inactive {
+  background-color: #ccc;
+}
+
+/* 이미지 업로드 섹션 */
+.upload_book_cover {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+.upload_book_cover input[type='text'] {
+  width: 300px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.upload_book_cover img {
+  width: 295px;
+  height: 390px;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  object-fit: cover;
+  margin-top: 90px;
+}
+
+/* 버튼 영역 */
+.book_create_button_area {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.book_create_button_area button {
+  padding: 8px 30px;
+  font-size: 1em;
+  color: #fff;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+}
+
+.book_create_button_area button[type='submit'] {
+  background-color: #007bff;
+}
+
+.book_create_button_area button[type='button'] {
+  background-color: #777;
+}
+
+/* 로딩 팝업 */
+.loading_popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading_popup .popup_content {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  text-align: center;
+  color: #333;
+}
