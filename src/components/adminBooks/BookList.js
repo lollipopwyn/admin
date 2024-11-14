@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
-  GET_BOOK_LIST_API_URL,
+  GET_ADMIN_BOOK_LIST_API_URL,
   GET_BOOK_BY_CATEGORY_API_URL,
   GET_SEARCH_BOOKS_API_URL,
   PATCH_BOOKS_INFO_API_URL,
@@ -32,7 +32,7 @@ const BookList = () => {
     try {
       const apiUrl = genre_tag_id
         ? GET_BOOK_BY_CATEGORY_API_URL
-        : GET_BOOK_LIST_API_URL;
+        : GET_ADMIN_BOOK_LIST_API_URL;
       const response = await axios.get(apiUrl, {
         params: { page, limit, genre_tag_id },
       });

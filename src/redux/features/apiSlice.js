@@ -5,7 +5,7 @@ import {
   // GET
   GET_BOOK_ALL_CATEGORIES_API_URL,
   GET_BOOK_BY_CATEGORY_API_URL,
-  GET_BOOK_LIST_API_URL,
+  GET_ADMIN_BOOK_LIST_API_URL,
   GET_SEARCH_BOOKS_API_URL,
 
   // POST
@@ -56,10 +56,10 @@ export const fetchBookByCategoryData = createApiThunk(
   getRequest
 );
 
-//북 리스트 관련 Thunks
-export const fetchBookListData = createApiThunk(
-  'api/fetchGetBookList',
-  GET_BOOK_LIST_API_URL,
+//관리자 페이지에 북 리스트 호출 Thunks
+export const fetchAdminBookListData = createApiThunk(
+  'api/fetchAdminBookList',
+  GET_ADMIN_BOOK_LIST_API_URL,
   getRequest
 );
 // 키워드 검색 관련 Thunks
@@ -113,7 +113,7 @@ const apiSlice = createSlice({
   name: 'api',
   initialState: {
     fetchBookAllCategories: [],
-    fetchGetBookList: [],
+    fetchAdminBookListt: [],
     fetchSearchBooks: null,
     fetchBookByCategory: null,
 
@@ -145,10 +145,10 @@ const apiSlice = createSlice({
 
       // ==============북 리스트==============
       .addCase(
-        fetchBookListData.fulfilled,
-        handleFullfilled('fetchGetBookList')
+        fetchAdminBookListData.fulfilled,
+        handleFullfilled('fetchAdminBookList')
       )
-      .addCase(fetchBookListData.rejected, handleRejected)
+      .addCase(fetchAdminBookListData.rejected, handleRejected)
       // ==============북 키워드 검색==============
       .addCase(
         fetchSearchBooksData.fulfilled,
