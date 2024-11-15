@@ -5,6 +5,7 @@ import Header from './components/Header'; // 헤더
 import Main from './components/Main/Main'; // 메인 컨텐츠
 import './App.css';
 import BooksManageing from './components/adminBooks/BooksManageing';
+import BookListDetail from './components/adminBooks/BookListDetail';
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
         <div className="content-area">
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/books/new" element={<BooksManageing />} />
+            <Route path="/books" element={<BooksManageing />} />
+            <Route path="/books/:bookId" element={<BookListDetail />} />
+
             {/* 다른 페이지 라우팅을 추가할 수 있습니다 */}
           </Routes>
         </div>
