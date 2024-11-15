@@ -11,6 +11,8 @@ const BASE_URL =
 export const GET_BOOK_ALL_CATEGORIES_API_URL = `${BASE_URL}/all-categories`; //도서 전체 카테고리 조회
 export const GET_BOOK_BY_CATEGORY_API_URL = `${BASE_URL}/search-category`; //도서 필터링 검색
 export const GET_ADMIN_BOOK_LIST_API_URL = `${BASE_URL}/admin/books`; //도서 조회
+export const GET_BOOK_DETAIL_API_URL = (bookId) =>
+  `${BASE_URL}/book-list/${bookId}`; //도서 상세 정보
 export const GET_SEARCH_BOOKS_API_URL = `${BASE_URL}/search-books`; //도서 키워드 검색
 
 // post

@@ -7,6 +7,7 @@ import {
   GET_BOOK_BY_CATEGORY_API_URL,
   GET_ADMIN_BOOK_LIST_API_URL,
   GET_SEARCH_BOOKS_API_URL,
+  GET_BOOK_DETAIL_API_URL,
 
   // POST
   POST_NEW_BOOKS_API_URL,
@@ -56,7 +57,7 @@ export const fetchBookByCategoryData = createApiThunk(
   getRequest
 );
 
-//관리자 페이지에 북 리스트 호출 Thunks
+//북 리스트 호출 Thunks
 export const fetchAdminBookListData = createApiThunk(
   'api/fetchAdminBookList',
   GET_ADMIN_BOOK_LIST_API_URL,
@@ -81,6 +82,13 @@ export const patchBooksInfoData = createApiThunk(
   'api/patchBooksInfo',
   PATCH_BOOKS_INFO_API_URL,
   patchRequest
+);
+
+// 도서 상세 정보 get
+export const fetchBookDetailData = createApiThunk(
+  'api/fetchGetBookDetail',
+  async (bookId) => GET_BOOK_DETAIL_API_URL(bookId),
+  getRequest
 );
 
 //========================3. 비동기 API 호출 처리========================
@@ -116,6 +124,7 @@ const apiSlice = createSlice({
     fetchAdminBookListt: [],
     fetchSearchBooks: null,
     fetchBookByCategory: null,
+    fetchGetBookDetail: null,
 
     postNewBooks: null,
 
@@ -149,6 +158,13 @@ const apiSlice = createSlice({
         handleFullfilled('fetchAdminBookList')
       )
       .addCase(fetchAdminBookListData.rejected, handleRejected)
+      // 북 상세페이지-----------------------------------------------------
+      .addCase(
+        fetchBookDetailData.fulfilled,
+        handleFullfilled('fetchGetBookDetail')
+      )
+      .addCase(fetchBookDetailData.rejected, handleRejected)
+      .addCase(fetchBookDetailData.pending, handlePending)
       // ==============북 키워드 검색==============
       .addCase(
         fetchSearchBooksData.fulfilled,
