@@ -16,8 +16,8 @@ function App() {
         <div className="content-area">
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/books" element={<BooksManageing />} />
-            <Route path="/books/:bookId" element={<BookListDetail />} />
+            <Route path="/books/new" element={<BooksManageing />} />
+            
 
             {/* 다른 페이지 라우팅을 추가할 수 있습니다 */}
           </Routes>
