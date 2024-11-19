@@ -51,12 +51,12 @@ const Dashboard = () => {
         {openSections.book && (
           <div className="submenu-container">
             <Link
-              to="/books/new"
+              to="/books"
               className={`submenu-item ${
-                location.pathname === "/books/new" ? "active" : ""
+                location.pathname === "/books" ? "active" : ""
               }`}
             >
-              {location.pathname === "/books/new" && (
+              {location.pathname === "/books" && (
                 <MdKeyboardArrowRight className="arrow-icon" />
               )}
               신간 도서 등록
